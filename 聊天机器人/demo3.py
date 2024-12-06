@@ -1,12 +1,9 @@
 import os
-
-from fastapi import FastAPI
 from langchain_community.chat_message_histories import *
 from langchain_core.messages import HumanMessage
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import RunnableWithMessageHistory
 from langchain_openai import ChatOpenAI
-from langserve import add_routes
 
 os.environ['LANGCHAIN_API_KEY'] = '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'
 os.environ['LANGCHAIN_TRACING_V2']='true'
