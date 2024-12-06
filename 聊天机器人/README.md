@@ -1,15 +1,25 @@
+### 1.保存聊天的历史记录
 
-### 1. `RunnableWithMessageHistory`
+每个SESSION_ID对应一次对话。
+
+```python
+def get_session_history(session_id:str):
+    if session_id not in store:
+        store[session_id] = ChatMessageHistory()
+    return store[session_id]
+```
+
+### 2. `RunnableWithMessageHistory`
 
 **定义**:
 `RunnableWithMessageHistory` 是一种工具，它将一个可调用的对象（如链、函数或模型）与历史消息记录结合起来。它通过记录会话中所有的消息，使得上下文得以保留，非常适合需要持续对话的情景，比如聊天机器人或客户支持系统。
 
-### 2. 代码分析
+### 3. 代码分析
 
 1. **创建 `do_message` 实例**:
 
-   ```
-   pythondo_message = RunnableWithMessageHistory(  
+   ```python
+   do_message = RunnableWithMessageHistory(  
        chain,  
        get_session_history,  
        input_messages_key='my_msg'   
